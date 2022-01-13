@@ -15,7 +15,7 @@ Building native images with Clojure and GraalVM.
 2. Extract it: `tar -xvzf graalvm-ce-java11-linux-amd64-21.3.0.tar.gz`
 3. Move it: `mv graalvm-ce-java11-21.3.0/ /usr/lib/jvm/ && cd /usr/lib/jvm`
 4. Check current java alternatives: `update-alternatives --config java`
-5. Installed new java with 100 priority: 
+5. Add new java alternative with 100 priority: 
 `sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/graalvm-ce-java11-21.3.0/bin/java 100`
 6. Check java version: `java --version`
 7. Create symlink: `ln -s graalvm-ce-java11-21.3.0 graalvm`
@@ -65,7 +65,7 @@ GraalVM options - https://www.graalvm.org/reference-manual/native-image/Options/
 ## Adding Java 17
 
 1. Download and install Java 17.
-2. Add java alternative with priority 200:
+2. Add new java alternative with priority 200:
 `sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/graalvm-ce-java17-21.3.0/bin/java 200`
 3. Select new java: `sudo update-alternatives --config java`
 4. Check current version: `java --version`
@@ -84,4 +84,3 @@ With Java 17 GraalVM I had to switch to root user in order to install native-ima
 11. Check that native-image available
 
 Tip: to remove java alternative run: `sudo update-alternatives --remove java /usr/lib/jvm/graalvm-ce-java11-21.3.0/bin/java`
-
