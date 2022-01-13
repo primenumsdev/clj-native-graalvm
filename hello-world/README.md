@@ -21,6 +21,10 @@ Create native image:
         -jar target/uberjar/hello-world-0.1.0-SNAPSHOT-standalone.jar \
         -H:Name=./target/hello-world
 
+or via lein-shell plugin:
+
+    $ lein native
+
 ## Usage
 
 Run jar:
