@@ -7,7 +7,7 @@
 (defn -main
   [& args]
   (println "Starting web server...")
-  (def server (w/start-server 3000)))
+  (def server (w/start-server {:port 3000})))
 
 (comment
   (-main)

@@ -9,6 +9,8 @@
                  [info.sunng/ring-jetty9-adapter "0.17.2"]
                  [org.eclipse.jetty/jetty-alpn-java-server "10.0.7"]
                  [metosin/reitit "0.5.15"]
+                 [metosin/jsonista "0.3.5"]
+                 [metosin/muuntaja "0.6.8"]
                  [ring-cors "0.1.13"]]
   :main web-app.core
   :target-path "target/%s"
@@ -20,7 +22,9 @@
                           "native-image"
                           "--report-unsupported-elements-at-runtime"
                           "--initialize-at-build-time"
+                          "--allow-incomplete-classpath"
                           "--no-server"
+                          "--no-fallback"
                           "-jar" "./target/uberjar/${:uberjar-name:-${:name}-${:version}-standalone.jar}"
                           "-H:ReflectionConfigurationFiles=./resources/reflection.json"
                           "-H:Name=./target/${:name}"]
