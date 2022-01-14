@@ -1,0 +1,11 @@
+[
+    {
+      "name" : "org.eclipse.jetty.server.ServerConnector[]",
+      "queryAllDeclaredConstructors" : true,
+      "queryAllPublicConstructors" : true,
+      "queryAllDeclaredMethods" : true,
+      "queryAllPublicMethods" : true,
+      "allDeclaredClasses" : true,
+      "allPublicClasses" : true
+    }
+  ]
