@@ -84,3 +84,36 @@ With Java 17 GraalVM I had to switch to root user in order to install native-ima
 11. Check that native-image available
 
 Tip: to remove java alternative run: `sudo update-alternatives --remove java /usr/lib/jvm/graalvm-ce-java11-21.3.0/bin/java`
+
+## Using Docker
+
+### Building JAR docker image
+
+[Tutorial](https://dev.to/diogok/efficient-clojure-multistage-docker-images-with-java-and-native-image-1e9i)
+
+[Tutorial 2](https://blog.appsignal.com/2021/10/19/how-to-dockerize-an-existing-nodejs-application.html)
+
+Docker commands:
+
+1. List all docker images: `docker images`
+2. Build a new docker image: `docker build . -t image-name`
+3. Delete docker image by ID: `docker rmi image-id`
+4. Dangling docker images none:none - https://projectatomic.io/blog/2015/07/what-are-docker-none-none-images/
+5. Cleanup dangling docker images: `docker rmi $(docker images -f "dangling=true" -q) --force`, but that drops stage cache.
+6. Images none:none remain until old containers that were created from them still exists, even if stopped.[Source](https://stackoverflow.com/questions/51612208/how-to-delete-cached-intermediate-docker-images-after-the-cache-gets-invalidated)
+7. To clear all dangling images without associated containers: `docker image prune`
+
+### Optimizing Docker build time
+
+Tip: to speed up docker build, use .dockerignore - https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+Tip: Multistage builds, and run to specific stage - https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
+
+TODO: Try buildkit - https://docs.docker.com/engine/reference/builder/#buildkit
+
+### Optimizing Docker image size
+
+1. Use JRE instead of JDK for the final stage - https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
+2. Use Adoptium Docker Hub - https://hub.docker.com/_/eclipse-temurin
+3. Use alpine linux images - https://hub.docker.com/layers/eclipse-temurin/library/eclipse-temurin/17-jre-alpine/images/sha256-839f3208bfc22f17bf57391d5c91d51c627d032d6900a0475228b94e48a8f9b3?context=explore
+4. Use scratch image for native apps - https://hub.docker.com/_/scratch

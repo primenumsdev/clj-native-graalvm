@@ -1,0 +1,41 @@
+FROM clojure:openjdk-17-lein AS deps
+
+RUN mkdir /app
+
+COPY project.clj /app/project.clj
+
+WORKDIR /app
+
+RUN lein deps
+
+FROM deps AS uberjar
+
+COPY src /app/src
+
+WORKDIR /app
+
+RUN lein uberjar
+
+FROM  ghcr.io/graalvm/graalvm-ce:java17-21.3.0 AS graalvm
+
+RUN gu install native-image
+
+COPY --from=uberjar /app/target/uberjar/web-app-0.1.0-SNAPSHOT-standalone.jar /web-app.jar
+COPY resources/reflection.json /reflection.json
+
+RUN native-image --report-unsupported-elements-at-runtime \
+                --initialize-at-build-time \
+                --allow-incomplete-classpath \
+                --no-server \
+                --no-fallback \
+                -jar /web-app.jar \
+                -H:ReflectionConfigurationFiles=/reflection.json \
+                -H:Name=/web-app
+
+FROM scratch
+
+COPY --from=graalvm /web-app /web-app
+
+EXPOSE 3000
+
+CMD ["/web-app"]

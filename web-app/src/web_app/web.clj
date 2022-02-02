@@ -44,14 +44,14 @@
                               :responses  {200 {}}
                               :handler    (fn [req res raise]
                                             (let [name (-> req :parameters :query :name)]
-                                              (res {:status 200 :body (json-write {:msg (str "Welcome " name)})})))
+                                              (res {:status 200 :body (json-write {:msg (str "Welcome " name "!!")})})))
                               }
                     :post    {:summary    "POST hello"
                               :parameters {:body {:name string?}}
                               :responses  {200 {}}
                               :handler    (fn [req res raise]
                                             (let [name (-> req :parameters :body :name)]
-                                              (res {:status 200 :body (json-write {:msg (str "Welcome " name)})})))
+                                              (res {:status 200 :body (json-write {:msg (str "Welcome " name "!")})})))
                               }
                     }]]
         {:data {:muuntaja   m/instance
