@@ -145,3 +145,29 @@ since it is breaking jenv versions.
 Run: `gu install native-image`
 
 Check it's available: `native-image`
+
+## Static images
+
+In order to run native image with Docker from scratch, it needs to be static, meaning it will include all the dependencies that normally should be provided by OS environment.
+
+To build static image add this param: `--static`
+
+## Exit handlers
+
+To allow app quit by pressing Ctrl + C this options needs to be added: `--install-exit-handlers`
+
+## Additional information for GraalVM Native Image
+
+- [GraalVM Native Image Quick Reference](https://medium.com/graalvm/graalvm-native-image-quick-reference-4ceb84560fd8)
+
+- [Examples of Clojure libraries that support Graal Native Image build](https://github.com/clj-easy/graalvm-clojure)
+
+- [Native Image Options](https://www.graalvm.org/22.0/reference-manual/native-image/Options/)
+
+- [Reflection Use in Native Images](https://www.graalvm.org/22.0/reference-manual/native-image/Reflection/)
+
+- [GraalVM Native Image Tips & Tricks](https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/)
+
+- [Fix GraalVM Native Image Build Issues](https://simply-how.com/fix-graalvm-native-image-compilation-issues)
+
+- [Faster Clojure with GraalVM](https://www.redpill-linpro.com/techblog/2021/03/31/faster-clojure-with-graalvm.html)
