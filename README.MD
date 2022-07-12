@@ -119,7 +119,7 @@ TODO: Try buildkit - https://docs.docker.com/engine/reference/builder/#buildkit
 4. Use scratch image for native apps - https://hub.docker.com/_/scratch
 
 
-## Installing GraalVM on MacOs with jenv
+## Installing GraalVM on MacOS with jenv
 
 1. Check installed jenv versions: `jenv versions`
 2. Download GraalVM binaries - https://github.com/graalvm/graalvm-ce-builds/releases
@@ -151,6 +151,8 @@ Check it's available: `native-image`
 In order to run native image with Docker from scratch, it needs to be static, meaning it will include all the dependencies that normally should be provided by OS environment.
 
 To build static image add this param: `--static`
+
+Note: as of now (Jul, 20222) MacOS doesn't support that option with error: `DARWIN does not support building static executable images.`
 
 ## Exit handlers
 
