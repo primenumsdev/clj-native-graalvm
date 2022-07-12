@@ -158,6 +158,10 @@ Note: as of now (Jul, 20222) MacOS doesn't support that option with error: `DARW
 
 To allow app quit by pressing Ctrl + C this options needs to be added: `--install-exit-handlers`
 
+## Http, Https support
+
+If your app making http calls, this option needs to be added: `--enable-url-protocols=http,https`
+
 ## Additional information for GraalVM Native Image
 
 - [GraalVM Native Image Quick Reference](https://medium.com/graalvm/graalvm-native-image-quick-reference-4ceb84560fd8)
@@ -173,3 +177,5 @@ To allow app quit by pressing Ctrl + C this options needs to be added: `--instal
 - [Fix GraalVM Native Image Build Issues](https://simply-how.com/fix-graalvm-native-image-compilation-issues)
 
 - [Faster Clojure with GraalVM](https://www.redpill-linpro.com/techblog/2021/03/31/faster-clojure-with-graalvm.html)
+
+- [Using GraalVM Dashboard to inspect built image content](https://medium.com/graalvm/making-sense-of-native-image-contents-741a688dab4d)
